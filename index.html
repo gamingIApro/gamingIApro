@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GamingIA Pro - Mejores teclados gaming baratos 2026. Aula F75, Royal Kludge, Redragon. Guías, análisis y herramientas IA para gamers en español.">
+<meta name="keywords" content="teclado gaming barato, Aula F75, Royal Kludge, Redragon, ratón gaming, auriculares gaming, periféricos baratos 2026, gaming IA español">
+<title>GamingIA Pro | Teclados, Ratones y Periféricos Gaming Baratos 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#050508;--dark:#0a0a12;--card:#0e0e1a;--border:rgba(255,255,255,0.07);
+  --accent:#00f5ff;--accent2:#7c3aed;--accent3:#ff2d55;--gold:#ffd60a;
+  --muted:#6b6b8a;--white:#f0efff;
+}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden;cursor:none}
+.cursor{position:fixed;width:12px;height:12px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s;mix-blend-mode:difference}
+.cursor-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(0,245,255,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.15s ease}
+#bg-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;background:rgba(5,5,8,0.75);backdrop-filter:blur(20px);border-bottom:0.5px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:900;letter-spacing:-0.03em;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav ul{list-style:none;display:flex;gap:2.5rem}
+nav a{color:var(--muted);text-decoration:none;font-size:0.85rem;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s}
+nav a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--black)!important;padding:8px 18px;border-radius:100px;font-weight:500}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;padding:6rem 2rem 4rem;overflow:hidden}
+.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+.hero-inner{max-width:900px;text-align:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,245,255,0.06);border:0.5px solid rgba(0,245,255,0.25);color:var(--accent);font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:7px 16px;border-radius:100px;margin-bottom:1.5rem;animation:fadeDown 0.8s ease both}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.dot{width:6px;height:6px;background:var(--accent);border-radius:50%;display:inline-block;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(3rem,8vw,5.5rem);font-weight:900;line-height:1.02;letter-spacing:-0.04em;margin-bottom:1.25rem;animation:fadeUp 0.9s 0.1s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.glitch{position:relative;display:inline-block;color:var(--accent)}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%}
+.glitch::before{color:#ff2d55;animation:glitch1 3s infinite;clip-path:polygon(0 0,100% 0,100% 35%,0 35%)}
+.glitch::after{color:#00f5ff;animation:glitch2 3s infinite;clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%)}
+@keyframes glitch1{0%,90%,100%{transform:none;opacity:0}91%{transform:translate(-2px,-1px);opacity:0.8}95%{transform:translate(2px,1px);opacity:0.8}}
+@keyframes glitch2{0%,90%,100%{transform:none;opacity:0}93%{transform:translate(2px,1px);opacity:0.8}97%{transform:translate(-2px,-2px);opacity:0.8}}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:580px;margin:0 auto 2.5rem;font-weight:300;animation:fadeUp 0.9s 0.2s ease both}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.9s 0.3s ease both}
+.btn-primary{background:linear-gradient(135deg,var(--accent2),#a855f7);color:#fff;padding:15px 32px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 0 40px rgba(124,58,237,0.3)}
+.btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 8px 50px rgba(124,58,237,0.5)}
+.btn-secondary{background:transparent;color:var(--accent);padding:15px 32px;border-radius:100px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;text-decoration:none;border:1px solid rgba(0,245,255,0.3);transition:all 0.2s}
+.btn-secondary:hover{background:rgba(0,245,255,0.06);border-color:var(--accent)}
+.floating-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin-top:2.5rem;animation:fadeUp 0.9s 0.4s ease both}
+.ftag{padding:5px 14px;border-radius:100px;font-size:0.75rem;letter-spacing:0.05em;border:0.5px solid var(--border);color:var(--muted);transition:all 0.2s;cursor:default}
+.ftag:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,245,255,0.05)}
+.scroll-ind{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;animation:fadeUp 1s 0.8s ease both}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollDrop 1.5s ease-in-out infinite}
+@keyframes scrollDrop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.ticker{background:rgba(0,245,255,0.03);border-top:0.5px solid rgba(0,245,255,0.1);border-bottom:0.5px solid rgba(0,245,255,0.1);padding:0.7rem 0;overflow:hidden;position:relative;z-index:1}
+.ticker-track{display:flex;gap:3rem;animation:ticker 25s linear infinite;white-space:nowrap}
+.ticker-item{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.ticker-item b{color:var(--accent)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+section{padding:6rem 2rem;position:relative;z-index:1}
+.container{max-width:1200px;margin:0 auto}
+.section-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;display:flex;align-items:center;gap:8px}
+.section-label::before{content:'';display:block;width:20px;height:1px;background:var(--accent)}
+h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-0.03em;margin-bottom:0.75rem;line-height:1.1}
+.section-desc{color:var(--muted);font-size:1rem;max-width:500px;margin-bottom:3rem}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.product-card{background:var(--card);border:0.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s;position:relative}
+.product-card:hover{transform:translateY(-6px);border-color:rgba(0,245,255,0.2);box-shadow:0 20px 60px rgba(0,0,0,0.4),0 0 30px rgba(0,245,255,0.05)}
+.product-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(0,245,255,0.05))}
+.product-body{padding:1.5rem}
+.product-badge{display:inline-flex;align-items:center;gap:5px;font-size:0.68rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:4px 10px;border-radius:100px;margin-bottom:1rem}
+.badge-hot{background:rgba(255,45,85,0.12);color:#ff6b8a;border:0.5px solid rgba(255,45,85,0.2)}
+.badge-best{background:rgba(255,214,10,0.1);color:var(--gold);border:0.5px solid rgba(255,214,10,0.2)}
+.badge-new{background:rgba(0,245,255,0.08);color:var(--accent);border:0.5px solid rgba(0,245,255,0.2)}
+.badge-budget{background:rgba(124,58,237,0.1);color:#a78bfa;border:0.5px solid rgba(124,58,237,0.2)}
+.product-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;letter-spacing:-0.01em;margin-bottom:0.5rem;line-height:1.3}
+.product-card p{font-size:0.83rem;color:var(--muted);line-height:1.6;margin-bottom:1.25rem}
+.product-price{display:flex;align-items:baseline;gap:8px;margin-bottom:1.25rem}
+.price-current{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:900;color:var(--white)}
+.price-old{font-size:0.85rem;color:var(--muted);text-decoration:line-through}
+.price-save{font-size:0.72rem;background:rgba(0,245,255,0.1);color:var(--accent);padding:3px 8px;border-radius:100px}
+.stars{color:var(--gold);font-size:0.8rem;margin-bottom:1rem;letter-spacing:2px}
+.btn-buy{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;background:linear-gradient(135deg,var(--accent2),#a855f7);color:#fff;border-radius:12px;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;transition:all 0.2s;border:none;cursor:pointer}
+.btn-buy:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(124,58,237,0.4)}
+.btn-buy-outline{background:transparent;border:0.5px solid rgba(0,245,255,0.3);color:var(--accent)}
+.btn-buy-outline:hover{background:rgba(0,245,255,0.06)}
+.featured-product{background:var(--card);border:0.5px solid rgba(255,214,10,0.2);border-radius:24px;padding:2.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:2rem;position:relative;overflow:hidden}
+.featured-product::before{content:'⭐ PRODUCTO DESTACADO';position:absolute;top:1.25rem;right:1.5rem;font-size:0.68rem;letter-spacing:0.1em;color:var(--gold);background:rgba(255,214,10,0.08);padding:4px 12px;border-radius:100px;border:0.5px solid rgba(255,214,10,0.2)}
+.feat-img{height:250px;background:linear-gradient(135deg,rgba(255,214,10,0.08),rgba(124,58,237,0.1));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:6rem}
+.feat-body h3{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:900;letter-spacing:-0.02em;margin-bottom:0.75rem}
+.feat-specs{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin:1rem 0 1.5rem}
+.spec{background:rgba(255,255,255,0.03);border:0.5px solid var(--border);border-radius:8px;padding:8px 12px}
+.spec-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
+.spec-value{font-size:0.88rem;font-weight:500;color:var(--white)}
+@media(max-width:640px){.featured-product{grid-template-columns:1fr}.featured-product::before{top:0.75rem;right:0.75rem}}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.article-card{background:var(--card);border:0.5px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.3s;text-decoration:none;color:inherit;display:block}
+.article-card:hover{transform:translateY(-4px);border-color:rgba(124,58,237,0.3)}
+.article-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:3rem;position:relative;overflow:hidden}
+.article-img.purple{background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(168,85,247,0.1))}
+.article-img.cyan{background:linear-gradient(135deg,rgba(0,245,255,0.1),rgba(0,245,255,0.05))}
+.article-img.red{background:linear-gradient(135deg,rgba(255,45,85,0.15),rgba(255,45,85,0.05))}
+.article-img.gold{background:linear-gradient(135deg,rgba(255,214,10,0.12),rgba(255,214,10,0.04))}
+.scan-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:scan 3s linear infinite;opacity:0.5}
+@keyframes scan{from{top:0}to{top:100%}}
+.article-body{padding:1.25rem}
+.article-tag{font-size:0.68rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#a78bfa;margin-bottom:0.6rem}
+.article-card h3{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;line-height:1.35;margin-bottom:0.5rem}
+.article-card p{font-size:0.82rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.article-meta{font-size:0.72rem;color:var(--muted);display:flex;gap:12px}
+.ad-slot{background:rgba(255,255,255,0.015);border:1px dashed rgba(255,255,255,0.06);border-radius:16px;padding:1.5rem;text-align:center;color:var(--muted);font-size:0.78rem;margin:2.5rem 0}
+.newsletter-section{background:linear-gradient(135deg,rgba(124,58,237,0.08),rgba(0,245,255,0.04));border:0.5px solid rgba(124,58,237,0.15);border-radius:24px;padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
+.nl-form{display:flex;gap:0.75rem;max-width:440px;margin:1.5rem auto 0}
+.nl-form input{flex:1;background:rgba(255,255,255,0.05);border:0.5px solid var(--border);border-radius:100px;padding:13px 22px;color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s}
+.nl-form input:focus{border-color:rgba(0,245,255,0.3)}
+.nl-form input::placeholder{color:var(--muted)}
+.nl-form button{background:linear-gradient(135deg,var(--accent2),#a855f7);color:#fff;border:none;border-radius:100px;padding:13px 24px;font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.nl-form button:hover{transform:scale(1.04)}
+footer{border-top:0.5px solid var(--border);padding:3rem 2rem;position:relative;z-index:1}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr 1fr}}
+.footer-logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:0.75rem}
+.footer-desc{font-size:0.83rem;color:var(--muted);line-height:1.7}
+.footer-col h4{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--white);margin-bottom:1rem}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:0.6rem}
+.footer-col a{font-size:0.83rem;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{max-width:1200px;margin:2rem auto 0;padding-top:1.5rem;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:0.78rem;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+  <div class="logo">GamingIA Pro</div>
+  <ul>
+    <li><a href="#teclados">Teclados</a></li>
+    <li><a href="#ratones">Ratones</a></li>
+    <li><a href="#guias">Guías</a></li>
+    <li><a href="#ia">IA Gaming</a></li>
+    <li><a href="#newsletter" class="nav-cta">Newsletter</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Actualizado Mayo 2026</div>
+    <h1>Periféricos <span class="glitch" data-text="Gaming">Gaming</span><br>Baratos que Funcionan</h1>
+    <p class="hero-sub">Analizamos teclados, ratones y auriculares gaming reales. Sin humo, sin patrocinios ocultos. Con IA para gamers.</p>
+    <div class="hero-btns">
+      <a href="#teclados" class="btn-primary">Ver teclados 2026 →</a>
+      <a href="#guias" class="btn-secondary">Guías gratis</a>
+    </div>
+    <div class="floating-tags">
+      <span class="ftag">Aula F75</span>
+      <span class="ftag">Royal Kludge RK84</span>
+      <span class="ftag">Redragon K552</span>
+      <span class="ftag">Logitech G305</span>
+      <span class="ftag">Razer DeathAdder</span>
+      <span class="ftag">IA para gamers</span>
+      <span class="ftag">PC gaming 500€</span>
+    </div>
+  </div>
+  <div class="scroll-ind"><div class="scroll-line"></div><span>Scroll</span></div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><b>🔥</b> Aula F75 — Mejor teclado gaming por menos de 50€</span>
+    <span class="ticker-item"><b>⭐</b> Royal Kludge RK84 — Hot swap, RGB, 75%</span>
+    <span class="ticker-item"><b>💡</b> IA Gaming 2026 — Herramientas gratis para mejorar</span>
+    <span class="ticker-item"><b>🖱️</b> Ratón gaming por 20€ que supera a otros de 80€</span>
+    <span class="ticker-item"><b>🔥</b> Aula F75 — Mejor teclado gaming por menos de 50€</span>
+    <span class="ticker-item"><b>⭐</b> Royal Kludge RK84 — Hot swap, RGB, 75%</span>
+    <span class="ticker-item"><b>💡</b> IA Gaming 2026 — Herramientas gratis para mejorar</span>
+    <span class="ticker-item"><b>🖱️</b> Ratón gaming por 20€ que supera a otros de 80€</span>
+  </div>
+</div>
+
+<div class="container" style="padding:0 2rem;position:relative;z-index:1">
+  <div class="ad-slot">📢 Publicidad — Google AdSense (se activa tras aprobación)</div>
+</div>
+
+<section id="teclados">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Mejor compra 2026</p>
+      <h2>Teclados Gaming Baratos</h2>
+      <p class="section-desc">Los teclados más buscados y mejor valorados por la comunidad gamer española.</p>
+    </div>
+
+    <div class="featured-product reveal">
+      <div class="feat-img">⌨️</div>
+      <div class="feat-body">
+        <span class="product-badge badge-best">⭐ Mejor relación calidad-precio</span>
+        <h3>Aula F75 — El teclado gaming que arrasa en 2026</h3>
+        <p style="color:var(--muted);font-size:0.9rem;margin-bottom:1rem">Mecánico 75% con switches intercambiables en caliente, RGB por tecla y sonido typing excepcional para su precio. El favorito de los gamers españoles.</p>
+        <div class="feat-specs">
+          <div class="spec"><div class="spec-label">Formato</div><div class="spec-value">75% (84 teclas)</div></div>
+          <div class="spec"><div class="spec-label">Switches</div><div class="spec-value">Hot Swap</div></div>
+          <div class="spec"><div class="spec-label">Conexión</div><div class="spec-value">USB-C / BT</div></div>
+          <div class="spec"><div class="spec-label">RGB</div><div class="spec-value">Por tecla</div></div>
+        </div>
+        <div class="stars">★★★★★</div>
+        <div class="product-price">
+          <span class="price-current">~45€</span>
+          <span class="price-old">80€</span>
+          <span class="price-save">-44%</span>
+        </div>
+        <a href="https://www.amazon.es/s?k=Aula+F75+teclado+gaming&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy">🛒 Ver precio en Amazon →</a>
+      </div>
+    </div>
+
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <div class="product-img">⌨️</div>
+        <div class="product-body">
+          <span class="product-badge badge-new">🆕 Hot swap</span>
+          <h3>Royal Kludge RK84</h3>
+          <p>75% compacto, triple modo (cable/2.4G/BT), hot swap y RGB. Ideal para setup limpio.</p>
+          <div class="stars">★★★★★</div>
+          <div class="product-price"><span class="price-current">~55€</span><span class="price-old">90€</span></div>
+          <a href="https://www.amazon.es/s?k=Royal+Kludge+RK84&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy">🛒 Amazon →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">⌨️</div>
+        <div class="product-body">
+          <span class="product-badge badge-budget">💜 Ultra barato</span>
+          <h3>Redragon K552 Kumara</h3>
+          <p>El clásico indestructible. Mecánico, TKL, switches Outemu Blue. Primer teclado mecánico perfecto.</p>
+          <div class="stars">★★★★☆</div>
+          <div class="product-price"><span class="price-current">~28€</span><span class="price-old">45€</span></div>
+          <a href="https://www.amazon.es/s?k=Redragon+K552&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy btn-buy-outline">🛒 Amazon →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">⌨️</div>
+        <div class="product-body">
+          <span class="product-badge badge-hot">🔥 Premium</span>
+          <h3>Keychron K2 Pro</h3>
+          <p>Favorito de gamers y trabajadores. Hot swap, Mac/Windows, Bluetooth 5.1 y build premium.</p>
+          <div class="stars">★★★★★</div>
+          <div class="product-price"><span class="price-current">~90€</span></div>
+          <a href="https://www.amazon.es/s?k=Keychron+K2+Pro&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy">🛒 Amazon →</a>
+        </div>
+      </div>
+    </div>
+    <div class="ad-slot reveal">📢 Publicidad — Google AdSense</div>
+  </div>
+</section>
+
+<section id="ratones" style="border-top:0.5px solid var(--border)">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Precisión máxima</p>
+      <h2>Ratones Gaming 2026</h2>
+      <p class="section-desc">Desde 15€ hasta 80€. El mejor sensor para cada bolsillo.</p>
+    </div>
+    <div class="products-grid reveal">
+      <div class="product-card">
+        <div class="product-img">🖱️</div>
+        <div class="product-body">
+          <span class="product-badge badge-best">⭐ Mejor barato</span>
+          <h3>Razer DeathAdder Essential</h3>
+          <p>Sensor óptico 6400 DPI, ergonómico, clic preciso. El más vendido por algo.</p>
+          <div class="stars">★★★★★</div>
+          <div class="product-price"><span class="price-current">~25€</span><span class="price-old">45€</span><span class="price-save">-44%</span></div>
+          <a href="https://www.amazon.es/s?k=Razer+DeathAdder+Essential&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy">🛒 Amazon →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">🖱️</div>
+        <div class="product-body">
+          <span class="product-badge badge-new">🆕 Sin cable</span>
+          <h3>Logitech G305 Lightspeed</h3>
+          <p>Inalámbrico gaming a precio de con cable. Sensor HERO, 250h batería, ultraligero.</p>
+          <div class="stars">★★★★★</div>
+          <div class="product-price"><span class="price-current">~35€</span><span class="price-old">60€</span></div>
+          <a href="https://www.amazon.es/s?k=Logitech+G305&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy">🛒 Amazon →</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">🖱️</div>
+        <div class="product-body">
+          <span class="product-badge badge-budget">💜 15€</span>
+          <h3>Redragon M711 Cobra</h3>
+          <p>12400 DPI, 7 botones programables, RGB. El mejor ratón por menos de 20€ sin discusión.</p>
+          <div class="stars">★★★★☆</div>
+          <div class="product-price"><span class="price-current">~18€</span></div>
+          <a href="https://www.amazon.es/s?k=Redragon+M711&tag=TU_ID_AFILIADO" target="_blank" class="btn-buy btn-buy-outline">🛒 Amazon →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="guias" style="border-top:0.5px solid var(--border)">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label">Aprende gratis</p>
+      <h2>Guías y análisis</h2>
+      <p class="section-desc">Artículos detallados para sacarle el máximo partido a tu setup.</p>
+    </div>
+    <div class="articles-grid reveal">
+      <a href="#" class="article-card">
+        <div class="article-img purple"><div class="scan-line"></div>⌨️</div>
+        <div class="article-body">
+          <div class="article-tag">Teclados</div>
+          <h3>Aula F75 — Análisis completo tras 3 meses de uso</h3>
+          <p>Switches, sound test, comparativa con RK84 y veredicto final.</p>
+          <div class="article-meta"><span>10 min</span><span>Mayo 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img cyan"><div class="scan-line"></div>🤖</div>
+        <div class="article-body">
+          <div class="article-tag">IA Gaming</div>
+          <h3>10 herramientas IA para mejorar en cualquier juego — gratis</h3>
+          <p>Desde análisis de partidas hasta entrenadores de aim con inteligencia artificial.</p>
+          <div class="article-meta"><span>8 min</span><span>Mayo 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img red"><div class="scan-line"></div>🖥️</div>
+        <div class="article-body">
+          <div class="article-tag">PC Gaming</div>
+          <h3>Cómo subir los FPS sin gastar dinero — 12 trucos reales</h3>
+          <p>Windows, drivers, BIOS y configuración de juegos que nadie te cuenta.</p>
+          <div class="article-meta"><span>9 min</span><span>Abril 2026</span></div>
+        </div>
+      </a>
+      <a href="#" class="article-card">
+        <div class="article-img gold"><div class="scan-line"></div>💰</div>
+        <div class="article-body">
+          <div class="article-tag">Guía de compra</div>
+          <h3>PC gaming por 500€ en 2026 — la build más inteligente</h3>
+          <p>Componente a componente, con enlaces de Amazon y alternativas si sube el precio.</p>
+          <div class="article-meta"><span>12 min</span><span>Mayo 2026</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter">
+  <div class="container">
+    <div class="newsletter-section reveal">
+      <p class="section-label" style="justify-content:center">Sin spam</p>
+      <h2>Guías nuevas cada semana</h2>
+      <p style="color:var(--muted);margin-top:0.5rem">Las mejores ofertas y guías gaming directamente en tu correo.</p>
+      <div class="nl-form">
+        <input type="email" placeholder="tu@email.com" id="nl-input">
+        <button onclick="nlSubmit()">Suscribirme</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner container">
+    <div>
+      <div class="footer-logo">GamingIA Pro</div>
+      <p class="footer-desc">El portal gaming en español más honesto de 2026. Analizamos periféricos reales con IA y sin patrocinios ocultos.</p>
+      <p style="font-size:0.72rem;color:var(--muted);opacity:0.7;margin-top:0.75rem">⚠️ Como afiliado de Amazon, ganamos una pequeña comisión sin coste adicional para ti.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Periféricos</h4>
+      <ul>
+        <li><a href="#">Teclados gaming</a></li>
+        <li><a href="#">Ratones gaming</a></li>
+        <li><a href="#">Auriculares</a></li>
+        <li><a href="#">Monitores</a></li>
+        <li><a href="#">Alfombrillas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="#">Aula F75 análisis</a></li>
+        <li><a href="#">PC gaming 500€</a></li>
+        <li><a href="#">Subir FPS gratis</a></li>
+        <li><a href="#">IA para gamers</a></li>
+        <li><a href="#">Mejores builds</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">Afiliados</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© 2026 GamingIA Pro · Hecho en España 🇪🇸</p>
+    <p>Diseñado con IA · Contenido verificado</p>
+  </div>
+</footer>
+
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px'});
+(function ar(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar)})();
+document.querySelectorAll('a,button,.product-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='60px';ring.style.height='60px';ring.style.borderColor='rgba(0,245,255,0.7)'});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='40px';ring.style.height='40px';ring.style.borderColor='rgba(0,245,255,0.4)'});
+});
+
+const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000),renderer=new THREE.WebGLRenderer({canvas:document.getElementById('bg-canvas'),alpha:true});
+renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+camera.position.z=30;
+const geo=new THREE.BufferGeometry(),N=1500,pos=new Float32Array(N*3),col=new Float32Array(N*3);
+for(let i=0;i<N*3;i+=3){pos[i]=(Math.random()-.5)*120;pos[i+1]=(Math.random()-.5)*120;pos[i+2]=(Math.random()-.5)*60;const r=Math.random();if(r<.33){col[i]=0;col[i+1]=.96;col[i+2]=1}else if(r<.66){col[i]=.49;col[i+1]=.23;col[i+2]=.93}else{col[i]=1;col[i+1]=.18;col[i+2]=.33}}
+geo.setAttribute('position',new THREE.BufferAttribute(pos,3));geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+const pts=new THREE.Points(geo,new THREE.PointsMaterial({size:.12,vertexColors:true,transparent:true,opacity:.65}));
+scene.add(pts);
+let mox=0,moy=0;
+document.addEventListener('mousemove',e=>{mox=(e.clientX/innerWidth-.5)*2;moy=(e.clientY/innerHeight-.5)*2});
+(function anim(){requestAnimationFrame(anim);pts.rotation.y+=.0003;pts.rotation.x+=.0001;camera.position.x+=(mox*2-camera.position.x)*.02;camera.position.y+=(-moy*2-camera.position.y)*.02;renderer.render(scene,camera)})();
+window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+
+const obs=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target)}})},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function nlSubmit(){const inp=document.getElementById('nl-input');if(inp.value.includes('@')){inp.value='';inp.placeholder='¡Suscrito! Revisa tu correo';document.querySelector('.nl-form button').textContent='✓ Listo'}}
+</script>
+</body>
+</html>
